@@ -1,0 +1,13 @@
+<div id="leftColumn" class="left">
+<% form_tag search_beats_url, :method => :get do %>
+<% if params[:q] %>
+<%= text_field_tag 'q', params[:q],{:style => 'color:#777777'} %> <%= submit_tag 'Go'%>
+<% else %>
+<%= text_field_tag 'q', 'Search beats',{:style => 'color:#777777', :onFocus => "this.value=''"} %> <%= submit_tag 'Go'%>
+<% end %>
+<% end %>
+<%= render :partial => "/beats/beat", :collection => @beats%>
+</div>
+<div id="rightColumn" class="right">
+</div>
+<div class="clear"></div>
