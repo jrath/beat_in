@@ -5,5 +5,5 @@ test:
   site: "localhost:3000"
 
 production:
-  site: "severe-frost-91.heroku.com"
+  site: "beatin.heroku.com"
 
