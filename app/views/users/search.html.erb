@@ -1,0 +1,17 @@
+<div id="leftColumn" class="left">
+<% form_tag search_users_url, :method => :get do %>
+<% if params[:q] %>
+<%= text_field_tag 'q', params[:q],{:style => 'color:#777777'} %> <%= submit_tag 'Go'%>
+<% else %>
+<%= text_field_tag 'q', 'Search people',{:style => 'color:#777777', :onFocus => "this.value=''"} %> <%= submit_tag 'Go'%>
+<% end %>
+<% end %>
+<%@users.each do |u| %>
+<%= render :partial => "/users/user", :locals => {:user => u, :following => (logged_in? and current_user.followees.collect{|f| f.followee_id}.include?(u.id))}%>
+<%end%>
+
+</div>
+<div id="rightColumn" class="right">
+<div><b>Welcome <%=h current_user.name%>!!</b></div>
+</div>
+<div class="clear"></div>

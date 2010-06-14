@@ -1,0 +1,16 @@
+<div id="leftColumn" class="left">
+<%= render :partial => "/beats/new", :locals => {:beat => Beat.new } %>
+<%= render :partial => "/beats/beat", :collection => @beats %>
+</div>
+<div id="rightColumn" class="right">
+  <div><b>Welcome <%=h @current_user.name%>!!</b></div><br/>
+  <div class="left followBox"><b><%= current_user.followees.size %></b><br/><a href="<%= following_user_url(current_user)%>">following</a></div>
+  <div class="left followBox"><b><%= current_user.followers.size %></b><br/><a href="<%= followers_user_url(current_user)%>">followers</a></div>
+  <div class="clear"></div>
+  <div>
+  <% form_tag search_users_url, :method => :get do %>
+  <%= text_field_tag 'q','Search people',{:style => 'color:#777777', :onFocus => "this.value=''"} %> <%= submit_tag 'Go'%>
+  <% end %>
+  </div>
+</div>
+<div class="clear"></div>

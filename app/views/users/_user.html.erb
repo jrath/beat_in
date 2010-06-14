@@ -1,0 +1,25 @@
+<% following ||= false 
+   hide_following ||= false
+%>
+<div id="user<%= user.id%>" class="userContent">
+<div style="margin-top:5px;"><a href="<%= profile_user_path(user)%>" class="boldLink"><%=h(user.login) %></a></div>
+<div class="meta"><%=h user.name %></div>
+<div style="margin-top:10px;"><%=h user.latest_beat.content if user.latest_beat%></div>
+
+<div id="user<%= user.id-%>links" class="beatLinks right">
+<% if !hide_following%>
+ <%if logged_in? and user.id == current_user.id %>
+ <b>You!!</b>
+ <% elsif !following %>
+  <%= link_to_remote 'Follow',
+                     :url => follow_user_url(user),
+                     :update => "user#{user.id}links",
+                     :loading => "this.style.display = 'none' ;$('user#{user.id}links').class='inProgress';",
+                     :type => :synchroneous,
+                     :class => "smallLink" %>
+ <% else %>
+ <b>Following</b>
+ <% end%>
+<% end%>
+</div>
+</div>

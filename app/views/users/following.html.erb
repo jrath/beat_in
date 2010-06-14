@@ -1,0 +1,13 @@
+<div id="leftColumn" class="left">
+<div style="font-size:20px;padding-bottom:20px;">
+<% if logged_in? and current_user.id == params[:id].to_i %> You follow<% else %><%=h @user.login%> follows <%end%> <%= @following.size %> <%= @following.size == 1 ? 'person' : 'people'%>
+</div>
+<%= render :partial => "/users/user", :collection => @following, :locals => {:hide_following => true}  %>
+</div>
+<div id="rightColumn" class="right">
+  <div><b><%=h @user.name %></b></div><br/>
+  <div class="left followBox"><b><%= @user.followees.size %></b><br/><a href="<%= following_user_url(@user)%>">following</a></div>
+  <div class="left followBox"><b><%= @user.followers.size %></b><br/><a href="<%= followers_user_url(@user)%>">followers</a></div>
+  <div class="clear"></div>
+</div>
+<div class="clear"></div>

@@ -1,0 +1,12 @@
+<% hide_owner ||= false %>
+<div id="beat<%= beat.id-%>" class="beatContent" 
+     onMouseOver="document.getElementById('beat<%= beat.id-%>links').style.display = '';" 
+     onMouseOut ="document.getElementById('beat<%= beat.id-%>links').style.display = 'none';">
+ <div><% if !hide_owner %><a href="<%= profile_user_path(beat.user)%>" class="boldLink"><%=h(beat.user.login) %></a> <%end%><%=h beat.content %></div>
+ <div class="meta">
+ <%= beat.created_at.strftime('%l:%M %p, %b %e')%>
+ </div>
+ <div id="beat<%= beat.id-%>links" style="display:none;" class="beatLinks right">
+  <a href="#" class="smallLink">Comment</a>
+ </div>
+</div>

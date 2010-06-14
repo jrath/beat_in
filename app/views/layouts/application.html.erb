@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head>
+   <title>BeatIn : Express your heartbeats!!!</title>
+   <link rel="stylesheet" type="text/css" href="/stylesheets/application.css"/> 
+   <%= javascript_include_tag 'prototype'%>
+ </head>
+ <body>
+   <script>
+   function updateCharLeft(text_area,notify_area_id){
+    if (text_area && text_area.value != null){
+     var chars_left = 140 - text_area.value.length;
+     if (chars_left < 0){ text_area.value = text_area.value.substr(0,140); chars_left = 0;}
+     notify_area = document.getElementById(notify_area_id)
+     if (notify_area) {
+       notify_area.innerHTML = chars_left + '';
+     }
+    }
+   }
+   </script>
+   <div id="blankTopBar">&nbsp;</div>
+   <div id="mainContainer">
+    <div id="head">
+     <div><a href="<%= root_url %>" id="logo">BeatIn</a></div>
+      <div id="headNav">
+        <div id="headNavBox" class="right">
+         <% if logged_in? %>
+         <span class="boldLink headerLink"><a href="<%= home_users_url %>">Home</a></span>
+         <span class="boldLink headerLink"><a href="<%= profile_user_url current_user %>">Profile</a></span>
+         <span class="boldLink headerLink"><a href="#">Settings</a></span>
+         <span class="boldLink headerLink"><a href="<%= logout_url %>">Logout</a></span>
+         <% else %>
+         <span class="boldLink headerLink"><a href="<%= signup_url %>">Signup</a></span>
+         <span class="boldLink headerLink"><a href="<%= login_url %>">Login</a></span>
+         <% end %>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div id="content">
+      <%= yield %>
+    </div>
+    <div id="foot">
+      © Jagadish Rath <a href="#">Privacy</a> <a href="#">Contact Us</a>
+    </div>
+   </div>
+ </body>
+</html>

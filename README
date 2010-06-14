@@ -1,0 +1,130 @@
+===========================================================================
+                                  BeatIn
+                                   By 
+                              Jagadish Rath
+===========================================================================
+
+============================================================================
+Feature List
+in order of priority
+===========================================================================
+
+Registration/Login:
+===================
+1. User can register
+2. User can  login
+
+Beating:
+=========
+1. User can post a beat of max. length 140 characters.(remember url shortening)
+2. All the beats by the user are available on his profile page.
+
+Following Users:
+================
+1. User can search other Users
+2. User can follow another user
+3. User can see the users he is following, users who are following him
+4. user can view beats from users,he is following, on his home page.
+5. User can visit another user's profile page where the beats by the second user are available.
+
+Commenting:
+===========
+1. User can comment on the beats/comments. 
+
+Deleting Beats:
+==============
+1. User can delete his beats/comments. 
+
+Searching beats(secondary):
+=================
+1. User can search beats
+
+Home page with latest beats(secondary):
+============================
+1. User can visit home without being logged in. the beats will be available 
+
+
+==========================================================================
+Schema
+==========================================================================
+ = User
+   * id
+   * username
+   * password
+   * email
+   * name
+
+   = index: id,username,email
+
+
+ = Beat
+   * id
+   * user_id
+   * content
+
+   = index: id,user_id, content(full_text)
+
+
+ = Comment
+   * source_beat_id
+   * comment_beat_id
+
+   = index: source_beat_id, reply_beat_id
+
+
+ = Follow
+
+   * follower_id
+   * following_id
+
+   = index: follower_id, following_id
+
+=============================================================================
+Functionalities
+=============================================================================
+
+ = Home (controller)
+  = index (action)
+   * shows the site home page.
+
+ = Users (controller)
+   = new
+     * renders page with signup box
+   = create
+     * creates user account
+   = activate
+     * activates usr account
+   = home 
+     * shows the user home page(beats from followings)
+   = profile 
+     * shows user profile page
+   = search
+     * returns beats which match keywords given by a user
+   = follow
+     * lets the logged in user follow another user
+   
+  = Sessions (controller)
+   = new  
+     * renders page with login box
+   = create 
+     * logs the user in
+   = destroy
+     * logs the user out
+ 
+ = Settings (controller)
+   = index
+     * renders page with options to edit account settings e.g. changepassword
+   = update_password
+     * updates user password
+  
+ = Beats (controller)
+  = create
+    * creates a new beat
+  = comment
+    * creates a comment beat for an existing beat
+  = search
+    * returns beats which match keywords given by a user
+
+ = Misc (controller)
+  = unknown_request
+    * handle for requests for which an action doesn't exist

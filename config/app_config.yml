@@ -1,0 +1,9 @@
+development:
+  site: "localhost:3000"
+
+test:
+  site: "localhost:3000"
+
+production:
+  site: "glowing-water-40.heroku.com"
+

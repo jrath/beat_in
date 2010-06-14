@@ -1,0 +1,11 @@
+<div class="newBeatContainer">
+<% form_for(beat) do |f| %>
+  <div class="newBeatLabel left">What's beating?</div>
+  <div class="charLeftNotice right"><span id="characters_left">140</span></div>
+  <div class="clear"></div>
+  <div>
+  <%= f.text_area :content, :cols =>"40", :rows => "2", :autocomplete => "off", :tabindex => "1", :class => "newBeatTextBox", :onKeyUp => "updateCharLeft(this,'characters_left');", :onFocus => "updateCharLeft(this,'characters_left');", :onBlur => "updateCharLeft(this,'characters_left');", :onChange => "updateCharLeft(this,'characters_left');"%>
+  </div>
+  <div class="right"> <%= f.submit 'Post Beat' %> </div>
+<% end %>
+</div>
