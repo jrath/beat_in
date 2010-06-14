@@ -1,3 +1,10 @@
+* Start as a new user and use the site
+ - fix the messaging
+ - fix the view templating
+ - use proper styles
+* Ajax update of more results
+* Put security checks in place, put session in database 
+* Write Test Code
 * Add fulltext search engine : solr or sphinx
-  - remember to remove the full text index on the columns
+  - remember to remove the full text index on the columns if there are any
 
