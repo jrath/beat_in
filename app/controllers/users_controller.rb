@@ -66,8 +66,8 @@ class UsersController < ApplicationController
     offset = params[:page] * limit
     unless params[:q].blank?
       words = params[:q].split(' ').collect{|w| "%#{w}%"}
-      conditions = words.collect{|w| "name like ?"}*' OR '
-      @users = User.find(:all, :conditions => [conditions] + words, :offset => offset, :limit => limit)
+      conditions = (words.collect{|w| "login like ?"}  + words.collect{|w| "name like ?"})*' OR '
+      @users = User.find(:all, :conditions => [conditions] + words + words, :offset => offset, :limit => limit)
     else
       @users = []
     end
