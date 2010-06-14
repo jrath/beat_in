@@ -2,13 +2,14 @@
 <div id="beat<%= beat.id-%>" class="beatContent" 
      onMouseOver="document.getElementById('beat<%= beat.id-%>links').style.display = '';" 
      onMouseOut ="document.getElementById('beat<%= beat.id-%>links').style.display = 'none';">
- <div><% if !hide_owner %><a href="<%= profile_user_path(beat.user)%>" class="boldLink"><%=h(beat.user.login) %></a> <%end%><%=h beat.content %></div>
+ <div><% if !hide_owner %><a href="<%= profile_user_path(beat.user)%>" class="boldLink"><%=h(beat.user.login) %></a> <%end%><%=display_beat_content beat %></div>
  <div class="meta">
  <%= beat.created_at.strftime('%l:%M %p, %b %e')%>
  </div>
 
  <div id="beat<%= beat.id-%>links"  class="beatLinks right" style="display:none;">
-  <% if logged_in? and beat.user_id == current_user.id %>
+  <% if logged_in? %>
+  <% if beat.user_id == current_user.id %>
   <%= link_to_remote 'Delete',
                      :url => beat_url(beat),
                      :method => :delete,
@@ -18,7 +19,8 @@
                      :class => "smallLink" %>
 
   <% else %>
-  <a href="#" class="smallLink">Comment</a>
+   <a href="<%=home_users_url(:reply_to_beat_id => beat.id, :reply_to => beat.user.login)%>" class="smallLink">Reply</a>
+  <% end %>
   <% end %>
  </div>
  <div id="beat<%= beat.id-%>linkinprogress" class="inProgress right beatLinks" style="display:none;">&nbsp;</div>

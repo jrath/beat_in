@@ -1,10 +1,17 @@
+<%value = params[:reply_to].blank? ? '' : "@#{params[:reply_to]}" %>
 <div class="newBeatContainer">
 <% form_for(beat) do |f| %>
   <div class="newBeatLabel left">What's beating?</div>
-  <div class="charLeftNotice right"><span id="characters_left">140</span></div>
+  <div class="charLeftNotice right"><span id="characters_left"><%= 140 - value.length %></span></div>
   <div class="clear"></div>
   <div>
-  <%= f.text_area :content, :cols =>"40", :rows => "2", :autocomplete => "off", :tabindex => "1", :class => "newBeatTextBox", :onKeyUp => "updateCharLeft(this,'characters_left');", :onFocus => "updateCharLeft(this,'characters_left');", :onBlur => "updateCharLeft(this,'characters_left');", :onChange => "updateCharLeft(this,'characters_left');"%>
+  <% if params[:reply_to_beat_id] %>
+  <input type="hidden" id="reply_to_beat_id" name="reply_to_beat_id" value="<%= params[:reply_to_beat_id]%>"/>
+  <% end %>
+  <%= f.text_area :content, :cols =>"40", :rows => "2", :autocomplete => "off", :tabindex => "1", :class => "newBeatTextBox", 
+                  :onKeyUp => "updateCharLeft(this,'characters_left');",
+                  :value => value
+                  %>
   </div>
   <div class="right"> <%= f.submit 'Post Beat' %> </div>
 <% end %>

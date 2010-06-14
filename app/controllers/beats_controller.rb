@@ -6,9 +6,12 @@ class BeatsController < ApplicationController
   def create
     @beat = Beat.new(params[:beat])
     @beat.user_id = @current_user.id
-
+   
     respond_to do |format|
       if @beat.save
+        if params[:reply_to_beat_id] and Beat.find(params[:reply_to_beat_id])
+          Comment.create(:source_beat_id => params[:reply_to_beat_id], :comment_beat_id => @beat.id)
+        end
         flash[:notice] = 'Beat was successfully created.'
         format.html { redirect_to(home_users_url) }
         format.xml  { render :xml => @beat, :status => :created, :location => @beat }

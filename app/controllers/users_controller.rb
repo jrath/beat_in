@@ -37,6 +37,7 @@ class UsersController < ApplicationController
   end
 
   def home
+    
     params[:page] = params[:page].to_i
     limit = 20
     offset = params[:page] * limit
