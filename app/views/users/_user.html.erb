@@ -14,7 +14,7 @@
   <%= link_to_remote 'Follow',
                      :url => follow_user_url(user),
                      :update => "user#{user.id}links",
-                     :loading => "this.style.display = 'none' ;$('user#{user.id}links').class='inProgress';",
+                     :before => "this.style.display = 'none' ;$('user#{user.id}links').class='inProgress';",
                      :type => :synchroneous,
                      :class => "smallLink" %>
  <% else %>

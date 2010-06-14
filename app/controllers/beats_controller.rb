@@ -18,6 +18,15 @@ class BeatsController < ApplicationController
       end
     end
   end
+
+  def destroy
+   @beat = current_user.beats.find(params[:id])
+   if @beat
+     Comment.delete_all(['source_beat_id = :beat_id OR comment_beat_id = :beat_id',{:beat_id => @beat.id}])
+     @beat.destroy
+     render :nothing => true
+   end
+  end
   #def comment
   #end
   #def search

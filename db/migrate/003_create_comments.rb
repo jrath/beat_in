@@ -1,6 +1,7 @@
 class CreateComments < ActiveRecord::Migration
   def self.up
-    create_table :comments, :id => false do |t|
+#    create_table :comments, :id => false do |t|
+    create_table :comments do |t|
       t.integer :source_beat_id
       t.integer :comment_beat_id
     end

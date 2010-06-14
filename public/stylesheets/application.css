@@ -96,7 +96,7 @@ input[type=submit],input[type=button],.button {
   background-color:#39D;
   color:white;
   border:0;
-  padding:2px 2px 3px 2px;
+  padding:2px 5px 3px 5px;
 }
 input[type=text], input[type=password], textarea, .inputbox{
   border:1px solid #39D;
@@ -163,6 +163,8 @@ right:5px;
 
 .inProgress{
  background: url("/images/inProgress.gif") no-repeat;
+ height:20px;
+ width:20px;
 }
 .followBox{
   margin:5px 5px 5px 5px;

@@ -6,7 +6,20 @@
  <div class="meta">
  <%= beat.created_at.strftime('%l:%M %p, %b %e')%>
  </div>
- <div id="beat<%= beat.id-%>links" style="display:none;" class="beatLinks right">
+
+ <div id="beat<%= beat.id-%>links"  class="beatLinks right" style="display:none;">
+  <% if logged_in? and beat.user_id == current_user.id %>
+  <%= link_to_remote 'Delete',
+                     :url => beat_url(beat),
+                     :method => :delete,
+                     :confirm => "Are you sure you want to delete the beat? You can't undo.",
+                     :update => "beat#{beat.id}links",
+                     :success => "Element.fade('beat#{beat.id}')",
+                     :class => "smallLink" %>
+
+  <% else %>
   <a href="#" class="smallLink">Comment</a>
+  <% end %>
  </div>
+ <div id="beat<%= beat.id-%>linkinprogress" class="inProgress right beatLinks" style="display:none;">&nbsp;</div>
 </div>
