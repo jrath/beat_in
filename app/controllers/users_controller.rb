@@ -45,7 +45,8 @@ class UsersController < ApplicationController
     @beats = Beat.find(:all,
                        :conditions => ["user_id IN (#{owner_ids*','})"],
                        :order      => "id DESC",
-                       :limit      => "#{offset},#{limit}")
+                       :offset     => offset,
+                       :limit      => limit)
   end
 
   def profile
@@ -65,7 +66,7 @@ class UsersController < ApplicationController
     unless params[:q].blank?
       words = params[:q].split(' ').collect{|w| "%#{w}%"}
       conditions = words.collect{|w| "name like ?"}*' OR '
-      @users = User.find(:all, :conditions => [conditions] + words, :limit => "#{offset},#{limit}")
+      @users = User.find(:all, :conditions => [conditions] + words, :offset => offset, :limit => limit)
     else
       @users = []
     end
