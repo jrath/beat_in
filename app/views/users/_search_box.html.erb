@@ -1,0 +1,4 @@
+<% form_tag search_users_url, :method => :get do %>
+<%= text_field_tag 'q','Search people',{:class => "searchBox", :onFocus => "this.value=''"} %><%= submit_tag 'Go'%>
+<% end %>
+

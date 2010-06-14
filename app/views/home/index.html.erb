@@ -1,21 +1,13 @@
-<script>
-</script>
-<div class="promoSection headingFont">
-  Express everything your heart beats with</em>  
-  <form action="<%= signup_url%>" method="get">
-    <input type="submit" value="Signup" style="margin-top:5px;" />
-  </form>
+<div class="promoSection">
+  <div class="headingFont">Express everything your heart beats with</div>
+  <form action="<%= signup_url%>" method="get" style="display:inline;"><input type="submit" value="Signup" style="margin-top:5px;"/></form>
+  <form action="<%= login_url%>" method="get" style="display:inline;"><input type="submit" value="Login" style="margin-top:5px;" /></form>
 </div>
-<div class="promoSection headingFont left">
-  Discover what the world is beating to
-  <% form_tag search_beats_url, :method => :get do %>
-  <%= text_field_tag 'q','Search beats',{:style => 'color:#777777', :onFocus => "this.value=''"} %><%= submit_tag 'Go'%>
-  <% end %>
+<div class="promoSection left">
+  <div class="headingFont">Discover what the world is beating to</div>
+  <%= render :partial => '/beats/search_box'%>
 </div>
-<div class="promoSection headingFont right">
-  Discover people and follow their beats
-  <% form_tag search_users_url, :method => :get do %>
-  <%= text_field_tag 'q','Search people',{:style => 'color:#777777;', :onFocus => "this.value=''"} %><%= submit_tag 'Go'%>
-  <% end %>
+<div class="promoSection right">
+  <div class="headingFont">Discover people and follow their beats</div>
+  <%= render :partial => '/users/search_box'%>
 </div>
-<div class="clear"></div>

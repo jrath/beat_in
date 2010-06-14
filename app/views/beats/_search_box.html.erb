@@ -1,0 +1,3 @@
+<% form_tag search_beats_url, :method => :get do %>
+<%= text_field_tag 'q','Search beats',{:class => "searchBox", :onFocus => "this.value=''"} %><%= submit_tag 'Go'%>
+<% end %>
