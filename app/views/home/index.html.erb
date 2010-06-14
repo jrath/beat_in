@@ -1,2 +1,29 @@
-Welcome!! <br/>
-Express everything your heart beats with!!!
+<div id="leftColumn" style="padding-bottom:40px;padding-right:5px;margin-right:5px;"class="left">
+<div style="font-size:18px;line-height:20px;color:#999" class="beatContent"><em>Latest beats</em></div>
+<%= render :partial => "/beats/beat", :collection => @beats %>
+</div>
+<div id="rightColumn" class="right">
+<div style="font-size:18px;margin-bottom:30px;line-height:20px;color:#999">
+  <em>Discover what the world is beating to:</em>
+  <% form_tag search_beats_url, :method => :get do %>
+  <%= text_field_tag 'q','Search beats',{:style => 'color:#777777', :onFocus => "this.value=''"} %><br/><%= submit_tag 'Go'%>
+  <% end %>
+</div>
+
+<div style="font-size:18px;margin-bottom:30px;line-height:20px;color:#999">
+  <em>Express everything your heart beats with:</em><br/>
+  <form action="<%= signup_url%>" method="get">
+    <input type="submit" value="Signup" style="margin-top:5px;" />
+  </form>
+</div>
+
+<div style="font-size:18px;margin-bottom:30px;line-height:20px;color:#999">
+  <em>Discover people and follow their beats:</em>
+  <% form_tag search_users_url, :method => :get do %>
+  <%= text_field_tag 'q','Search people',{:style => 'color:#777777', :onFocus => "this.value=''"} %><br/><%= submit_tag 'Go'%>
+  <% end %>
+</div>
+
+
+</div>
+<div class="clear"></div>

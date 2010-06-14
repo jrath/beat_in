@@ -120,8 +120,8 @@ Functionalities
  = Beats (controller)
   = create
     * creates a new beat
-  = comment
-    * creates a comment beat for an existing beat
+  = destroy
+    * deletes an existing beat
   = search
     * returns beats which match keywords given by a user
 

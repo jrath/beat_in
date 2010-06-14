@@ -1,5 +1,5 @@
 class BeatsController < ApplicationController
-  before_filter :login_required
+  before_filter :login_required, :except => [:search]
 
   # POST /beats
   # POST /beats.xml
@@ -30,9 +30,17 @@ class BeatsController < ApplicationController
      render :nothing => true
    end
   end
-  #def comment
-  #end
-  #def search
-  #end
+  def search
+    params[:page] = params[:page].to_i
+    limit = 10
+    offset = params[:page] * limit
+    unless params[:q].blank?
+      words = params[:q].split(' ').collect{|w| "%#{w}%"}
+      conditions = words.collect{|w| "content like ?"} *' OR '
+      @beats = Beat.find(:all, :conditions => ([conditions] + words), :offset => offset, :limit => limit)
+    else
+      @beats = []
+    end
+  end
 
 end

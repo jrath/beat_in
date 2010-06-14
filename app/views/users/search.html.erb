@@ -12,6 +12,8 @@
 
 </div>
 <div id="rightColumn" class="right">
+<% if logged_in? %>
 <div><b>Welcome <%=h current_user.name%>!!</b></div>
+<% end %>
 </div>
 <div class="clear"></div>

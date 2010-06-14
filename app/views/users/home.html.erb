@@ -7,7 +7,9 @@
   <div class="left followBox"><b><%= current_user.followees.size %></b><br/><a href="<%= following_user_url(current_user)%>">following</a></div>
   <div class="left followBox"><b><%= current_user.followers.size %></b><br/><a href="<%= followers_user_url(current_user)%>">followers</a></div>
   <div class="clear"></div>
-  <div>
+  <div style="font-size:18px;margin:30px 0px 0px 0px;color:#999">
+  <em>Discover people</em>
+
   <% form_tag search_users_url, :method => :get do %>
   <%= text_field_tag 'q','Search people',{:style => 'color:#777777', :onFocus => "this.value=''"} %> <%= submit_tag 'Go'%>
   <% end %>
