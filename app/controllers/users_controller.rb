@@ -81,11 +81,12 @@ class UsersController < ApplicationController
   def search
     params[:page] = params[:page].to_i
     limit = 10
+    @limit = limit
     offset = params[:page] * limit
-    unless params[:q].blank?
-      words = params[:q].split(' ').collect{|w| "%#{w}%"}
+    unless params[:u_q].blank?
+      words = params[:u_q].split(' ').collect{|w| "%#{w}%"}
       conditions = (words.collect{|w| "login like ?"}  + words.collect{|w| "name like ?"})*' OR '
-      @users = User.find(:all, :conditions => [conditions] + words + words, :offset => offset, :limit => limit)
+      @users = User.find(:all, :conditions => [conditions] + words + words, :offset => offset, :limit => limit, :order => 'id DESC')
     else
       @users = []
     end

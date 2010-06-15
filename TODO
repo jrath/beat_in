@@ -1,14 +1,12 @@
 In order of priority
 =====================
-* Start as a new user and use the site
- - fix the messaging
- - fix the view templating
- - use proper styles
-* Ajax update of more results
 * Put security checks in place, put session in database 
+* settings page
+* url shortening
 * Write Test Code
 * Add fulltext search engine : solr or sphinx
   - remember to remove the full text index on the columns if there are any
-
+* next page for search results
 * Minimizing db hits per request, do all kind of caching required
 * use memcache caching sessions and other contents
+

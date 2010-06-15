@@ -1,16 +1,11 @@
 <div id="leftColumn" class="left">
-<div style="font-size:20px;padding-bottom:20px;">
-
-<% if logged_in? and current_user.id == params[:id].to_i %> Your <% else %><%=h @user.login%>'s <%end%> <%= @followers.size %> <%= @followers.size == 1 ? 'follower' : 'followers'%>
-</div>
-<%@followers.each do |u| %>
-<%= render :partial => "/users/user", :locals => {:user => u, :following => (logged_in? and current_user.followees.collect{|f| f.followee_id}.include?(u.id))}%>
-<%end%>
+ <div class="profileHeading">
+ <% if logged_in? and current_user.id == params[:id].to_i %> Your <% else %><%=h @user.login%>'s <%end%> <%= @followers.size %> <%= @followers.size == 1 ? 'follower' : 'followers'%>
+ </div>
+ <%@followers.each do |u| %>
+ <%= render :partial => "/users/user", :locals => {:user => u, :following => (logged_in? and current_user.followees.collect{|f| f.followee_id}.include?(u.id))}%>
+ <%end%>
 </div>
 <div id="rightColumn" class="right">
-  <div><b><%=h @user.name %></b></div><br/>
-  <div class="left followBox"><b><%= @user.followees.size %></b><br/><a href="<%= following_user_url(@user)%>">following</a></div>
-  <div class="left followBox"><b><%= @user.followers.size %></b><br/><a href="<%= followers_user_url(@user)%>">followers</a></div>
-  <div class="clear"></div>
+  <%= render :partial => '/users/right_column', :locals => {:user => @user}%>
 </div>
-<div class="clear"></div>

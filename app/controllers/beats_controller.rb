@@ -27,11 +27,12 @@ class BeatsController < ApplicationController
   def search
     params[:page] = params[:page].to_i
     limit = 10
+    @limit = limit
     offset = params[:page] * limit
     unless params[:q].blank?
       words = params[:q].split(' ').collect{|w| "%#{w}%"}
       conditions = words.collect{|w| "content like ?"} *' OR '
-      @beats = Beat.find(:all, :conditions => ([conditions] + words), :offset => offset, :limit => limit)
+      @beats = Beat.find(:all, :conditions => ([conditions] + words), :offset => offset, :limit => limit, :order => 'id DESC')
     else
       @beats = []
     end

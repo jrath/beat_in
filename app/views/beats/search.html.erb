@@ -1,13 +1,16 @@
 <div id="leftColumn" class="left">
-<% form_tag search_beats_url, :method => :get do %>
-<% if params[:q] %>
-<%= text_field_tag 'q', params[:q],{:style => 'color:#777777'} %> <%= submit_tag 'Go'%>
-<% else %>
-<%= text_field_tag 'q', 'Search beats',{:style => 'color:#777777', :onFocus => "this.value=''"} %> <%= submit_tag 'Go'%>
-<% end %>
-<% end %>
-<%= render :partial => "/beats/beat", :collection => @beats%>
+ <%= render :partial => '/beats/search_box'%>
+ <%= render :partial => "/beats/beat", :collection => @beats%>
+ <div>
+ <% if params[:page] > 0%>
+ <a href="<%= search_beats_url(:page => (params[:page] - 1),:q => params[:q])%>">&lt;Prev</a>
+ <%end%>
+ <% if @beats.size == @limit %>
+ <a href="<%= search_beats_url(:page => (params[:page] + 1),:q => params[:q])%>">Next&gt;</a>
+ <%end%>
+ </div>
+
 </div>
 <div id="rightColumn" class="right">
+ <%= render :partial => "/users/right_column", :locals => {:hide_beat_search => true, :user => current_user}%>
 </div>
-<div class="clear"></div>
