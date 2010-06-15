@@ -3,8 +3,8 @@
 <% form_remote_tag :url => beats_url, 
                    :update => 'beats',
                    :condition => "$('beat_content').value != ''",
-                   :before =>  "Element.show('newBeatPostInProgress');",
-                   :complete => "Element.hide('newBeatPostInProgress');$('beat_content').value='';$('beat_content').focus();",
+                   :before =>  "Element.hide('postBeatButton');Element.show('newBeatPostInProgress');",
+                   :complete => "Element.hide('newBeatPostInProgress');Element.show('postBeatButton');$('beat_content').value='';$('beat_content').focus();",
                    :position => :top do %>
   <div class="headingFont left">What's beating?</div>
   <div class="charLeftNotice right"><span id="characters_left"><%= 140 - value.length %></span></div>
@@ -20,7 +20,7 @@
 
   </div>
 
-  <div class="right"><%= submit_tag 'Post Beat' %></div>
+  <div class="right"><%= submit_tag 'Post Beat', {:id => 'postBeatButton'} %></div>
   <div class="right inProgress" id="newBeatPostInProgress" style="display:none; margin-top:10px;">&nbsp;</div>
 <% end %>
 </div>
