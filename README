@@ -39,9 +39,9 @@ Searching beats(secondary):
 =================
 1. User can search beats
 
-Home page with latest beats(secondary):
+Home page:
 ============================
-1. User can visit home without being logged in. the beats will be available 
+1. User can visit home without being logged in. 
 
 
 ==========================================================================
@@ -75,7 +75,7 @@ Schema
  = Follow
 
    * follower_id
-   * following_id
+   * followee_id
 
    = index: follower_id, following_id
 
@@ -103,6 +103,12 @@ Functionalities
    = follow
      * lets the logged in user follow another user
    
+   = following
+     * shows the users a user is following
+   = following
+     * shows the followers of a user
+
+
   = Sessions (controller)
    = new  
      * renders page with login box
@@ -112,9 +118,9 @@ Functionalities
      * logs the user out
  
  = Settings (controller)
-   = index
+   = index #TODO
      * renders page with options to edit account settings e.g. changepassword
-   = update_password
+   = update_password #TODO
      * updates user password
   
  = Beats (controller)
@@ -125,6 +131,6 @@ Functionalities
   = search
     * returns beats which match keywords given by a user
 
- = Misc (controller)
+ = Misc (controller) #TODO
   = unknown_request
     * handle for requests for which an action doesn't exist
