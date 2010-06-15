@@ -1,0 +1,18 @@
+<% unless beats.blank? %>
+<% page ||= 0%>
+<% 
+url_function = hash.delete(:url_function)
+url_options = {:page => page + 1,:last_beat_id => beats.last.id}
+hash_url_options = hash.delete(:url_opions)
+url_options.merge! hash_url_options if hash_url_options.is_a? Hash
+%>
+<%= render :partial => "/beats/beat", :collection => beats, :locals => hash %>
+<%= link_to_remote 'More',
+                   :url => eval("#{url_function} url_options"),
+                   :method => :get,
+                   :update => "beat#{beats.last.id}",
+                   :before => "this.style.display='none';",
+                   :position => "after",
+                   :class => "more" %>
+
+<% end %>

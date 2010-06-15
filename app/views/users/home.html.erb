@@ -1,18 +1,11 @@
 <div id="leftColumn" class="left">
-<%= render :partial => "/beats/new", :locals => {:beat => Beat.new } %>
-<%= render :partial => "/beats/beat", :collection => @beats %>
+<%= render :partial => "/beats/new" %>
+<div id="beats">
+  <%= render :partial => "/beats/list", :locals => {:beats => @beats, :hash => {:url_function => 'home_users_url'}} %>
+
+</div>
+
 </div>
 <div id="rightColumn" class="right">
-  <div><b>Welcome <%=h @current_user.name%>!!</b></div><br/>
-  <div class="left followBox"><b><%= current_user.followees.size %></b><br/><a href="<%= following_user_url(current_user)%>">following</a></div>
-  <div class="left followBox"><b><%= current_user.followers.size %></b><br/><a href="<%= followers_user_url(current_user)%>">followers</a></div>
-  <div class="clear"></div>
-  <div style="font-size:18px;margin:30px 0px 0px 0px;color:#999">
-  <em>Discover people</em>
-
-  <% form_tag search_users_url, :method => :get do %>
-  <%= text_field_tag 'q','Search people',{:style => 'color:#777777', :onFocus => "this.value=''"} %> <%= submit_tag 'Go'%>
-  <% end %>
-  </div>
+<%= render :partial => '/users/right_column', :locals => {:user => current_user}%>
 </div>
-<div class="clear"></div>

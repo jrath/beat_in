@@ -1,3 +1,5 @@
+In order of priority
+=====================
 * Start as a new user and use the site
  - fix the messaging
  - fix the view templating
@@ -8,3 +10,5 @@
 * Add fulltext search engine : solr or sphinx
   - remember to remove the full text index on the columns if there are any
 
+* Minimizing db hits per request, do all kind of caching required
+* use memcache caching sessions and other contents

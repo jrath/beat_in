@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 4) do
 
   add_index "beats", ["user_id"], :name => "index_beats_on_user_id"
 
-  create_table "comments", :id => false, :force => true do |t|
+  create_table "comments", :force => true do |t|
     t.integer "source_beat_id"
     t.integer "comment_beat_id"
   end
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(:version => 4) do
   add_index "comments", ["comment_beat_id"], :name => "index_comments_on_comment_beat_id"
   add_index "comments", ["source_beat_id"], :name => "index_comments_on_source_beat_id"
 
-  create_table "follows", :id => false, :force => true do |t|
+  create_table "follows", :force => true do |t|
     t.integer  "follower_id"
     t.integer  "followee_id"
     t.datetime "created_at"

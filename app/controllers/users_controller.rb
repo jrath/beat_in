@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       redirect_back_or_default('/')
       flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
     else
-      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is below)."
+      flash.now[:notice]  = "Please try again."
       render :action => 'new'
     end
   end
@@ -47,13 +47,31 @@ class UsersController < ApplicationController
                        :conditions => ["user_id IN (#{owner_ids*','})"],
                        :order      => "id DESC",
                        :offset     => offset,
-                       :limit      => limit)
+                       :limit      => limit) 
+     @beats.reject!{|b| b.id >= params[:last_beat_id].to_i } if params[:last_beat_id]
+    if request.xhr?
+      render :partial => "/beats/list", :locals => {:beats => @beats, :page => params[:page], :hash => {:url_function => 'home_users_url'}}
+    end
   end
 
   def profile
+    params[:page] = params[:page].to_i
+    limit = 20
+    offset = params[:page] * limit
+
     @user  = User.find(params[:id])
     if @user
-      @beats = @user.beats
+      @beats = @user.beats.find(:all, :offset => offset, :limit => limit)
+      @beats.reject!{|b| b.id >= params[:last_beat_id].to_i } if params[:last_beat_id]
+      if request.xhr?
+        render :partial => "/beats/list", :locals => {:beats => @beats, :page => params[:page], 
+                                                      :hash => {:hide_owner => true, 
+                                                                :url_function => 'profile_user_url',
+                                                                :url_options => {:id => @user.id}
+                                                                }
+                                                      }
+ 
+      end
     else
       flash[:error]  = "We couldn't find the user."
       redirect_back_or_default('/')

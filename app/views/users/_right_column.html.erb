@@ -1,0 +1,13 @@
+<div class="grayFont"><% if logged_in? and user.id == current_user.id %><b>Welcome <%=h user.name%>!!</b><%else%><b><%=h user.name%></b><%end%></div><br/>
+<div class="left followBox"><b><%= user.followees.size %></b><br/><a href="<%= following_user_url(user)%>">following</a></div>
+<div class="left followBox"><b><%= user.followers.size %></b><br/><a href="<%= followers_user_url(user)%>">followers</a></div>
+<div class="clear"></div>
+<div>
+  <div class="headingFont">Discover people</div>
+  <%= render :partial => "/users/search_box" %>
+</div>
+<div>
+  <div class="headingFont">Search beats</div>
+  <%= render :partial => "/beats/search_box" %>
+</div>
+

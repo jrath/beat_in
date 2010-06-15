@@ -88,9 +88,7 @@ font-size:11px;
 }
 
 a:hover {color:#39D;text-decoration:underline;}
-a:active {color:#39D;text-decoration:none;}
-a:link {color:#39D;text-decoration:none;}
-a:visited {color:#39D;text-decoration:none;}
+a {color:#39D;text-decoration:none;}
 
 
 input[type=submit],input[type=button],.button {
@@ -98,12 +96,12 @@ input[type=submit],input[type=button],.button {
   color:white;
   border:1px solid #39D;
   height:25px;
-  margin:10px 0px 0px 0px;
+  margin:5px 0px 10px 0px;
   padding:2px 5px 2px 5px;
 }
 input[type=text], input[type=password], textarea, .inputbox{
   border:1px solid #39D;
-  margin:10px 0px 0px 0px;
+  margin:5px 0px 10px 0px;
   padding:2px 5px 2px 5px;
 }
 
@@ -147,6 +145,14 @@ font-size:16px;
 line-height:20px;
 font-weight:bold;
 color:#777;
+}
+
+.profileHeading {
+font-size:20px;
+line-height:25px;
+font-weight:bold;
+color:#777;
+margin-bottom:20px;
 }
 
 .beatContent {
@@ -194,4 +200,34 @@ margin:0px auto;
 
 .searchBox{
 color:#777777
+}
+
+.loginSignupBox {
+ margin:0px auto;
+ width:250px;
+}
+.loginSignupInputBox {
+ width:250px;
+}
+.errorMessage{
+  font-size:12px;
+  color:#777;
+  font-weight:bold;
+  text-align:center;
+  margin:10px 0px 10px 0px;
+}
+.noticeMessage{
+  font-size:12px;
+  color:#777;
+  font-weight:bold;
+  text-align:center;
+  margin:10px 0px 10px 0px;
+}
+.grayFont {
+  color:#777;
+}
+
+.more {
+ width:100%;
+ border:1px;
 }

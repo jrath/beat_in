@@ -1,16 +1,15 @@
-<div style="font-size:20px;">
+<div class="headingFont loginSignupBox">
 <% form_tag session_path do -%>
-<%= label_tag 'login' %><br/>
-<%= text_field_tag 'login', @login %><br/>
+<div>Login</div>
+<%= text_field_tag 'login', @login, {:class => "loginSignupInputBox"} %>
 
-
-<%= label_tag 'password' %><br/>
-<%= password_field_tag 'password', nil %><br/>
+<div>Password</div>
+<%= password_field_tag 'password', nil, {:class => "loginSignupInputBox"} %><br/>
 
 
 <!-- Uncomment this if you want this functionality
-<p><%= label_tag 'remember_me', 'Remember me' %>
-<%= check_box_tag 'remember_me', '1', @remember_me %></p>
+<p><%# label_tag 'remember_me', 'Remember me' %>
+<%# check_box_tag 'remember_me', '1', @remember_me %></p>
 -->
 
 <%= submit_tag 'Log in' %>

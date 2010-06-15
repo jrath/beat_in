@@ -1,12 +1,10 @@
 <div id="leftColumn" class="left">
-<div style="font-size:30px;padding-bottom:20px;"><%=h @user.login%></div>
-<%= render :partial => "/beats/beat", :collection => @beats, :locals => {:hide_owner => true} %>
+<div class="profileHeading"><%=h @user.login%></div>
+<div id="beats">
+  <%= render :partial => "/beats/list", :locals => {:beats => @beats, :hash => {:hide_owner => true, :url_function => 'profile_user_url',
+                                                                                                     :url_options => {:id => @user.id}}} %>
+</div>
 </div>
 <div id="rightColumn" class="right">
-  <div><b><%=h @user.name %></b></div><br/>
-  <div class="left followBox"><b><%= @user.followees.size %></b><br/><a href="<%= following_user_url(@user)%>">following</a></div>
-  <div class="left followBox"><b><%= @user.followers.size %></b><br/><a href="<%= followers_user_url(@user)%>">followers</a></div>
-  <div class="clear"></div>
-
+<%= render :partial => '/users/right_column', :locals => {:user => @user}%>
 </div>
-<div class="clear"></div>
